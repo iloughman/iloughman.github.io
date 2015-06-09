@@ -10,6 +10,10 @@ li {
 	list-style: none;
 }
 
+ul {
+	padding: 0;
+}
+
 .title {
 	text-align: center;
 	border-bottom: 1px solid #ccc;
@@ -34,7 +38,8 @@ li {
 
 .postLink {
 	font-size: 18px;
-	text-align: left;
+	text-align: center;
 	width: 100%;
+	padding: 0;
 }
 

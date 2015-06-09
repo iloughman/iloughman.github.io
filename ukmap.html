@@ -22,12 +22,6 @@
 		d3.json("uk.json", function (error, uk) {
 			if (error) return console.log(error);
 			console.log(uk);
-			
-			// svg.append("path")
-		 //      .datum(topojson.feature(uk, uk.objects.subunits))
-		 //      .attr("d", d3.geo.path().projection(d3.geo.mercator()));
-
-		 // Below does the commented lines above more explicitly
 
 			var subunits = topojson.feature(uk, uk.objects.subunits);
 
