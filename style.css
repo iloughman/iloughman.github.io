@@ -1,5 +1,6 @@
 body {
 	font-family: Garamond;
+	font-size: 16px;
 }
 
 h2 {
@@ -33,7 +34,6 @@ ul {
 .footer {
 	border-top: 1px solid #ccc;
 	padding-left: 30px;
-	font-size: 16px;
 }
 
 .postLink {
@@ -45,6 +45,10 @@ ul {
 
 .about {
 	color: steelblue;
+}
+
+.name {
+	font-weight: 600;
 }
 
 div { 
