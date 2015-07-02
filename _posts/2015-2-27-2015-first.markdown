@@ -1,6 +1,0 @@
----
-title: Lecture 1
-layout: post
----
-
-Here is my page.
