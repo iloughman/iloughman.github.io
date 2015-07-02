@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+	<head>
+	<style>
+		text {
+			  font: 18px Garamond;
+			}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+
+	</head>
+
+	<body>
+	<script>
+
+	var poem = [
+		"One must have a mind of winter", 
+		"To regard the frost and the boughs",
+		 "Of the pine-trees crusted with snow;",
+		 "",
+		"And have been cold a long time",
+		"To behold the junipers shagged with ice,",
+		"The spruces rough in the distant glitter",
+		"",
+		"Of the January sun; and not to think",
+		"Of any misery in the sound of the wind,",
+		"In the sound of a few leaves,",
+		"",
+		"Which is the sound of the land",
+		"Full of the same wind",
+		"That is blowing in the same bare place",
+		"",
+		"For the listener, who listens in the snow,",
+		"And, nothing himself, beholds",
+		"Nothing that is not there and the nothing that is."
+				];
+
+	var svg = d3.select('body').append("svg")
+				.attr('height', 800)
+				.attr('width', 800)
+				.append("g")
+				  .attr("transform", "translate(32," + 32 + ")");
+
+	console.log("svg", svg);
+
+	function update(data){
+
+		svg.selectAll('text').remove()
+
+		var text = svg.selectAll('text')
+			.data(data, function(d,i){ return d})
+
+
+		// ENTER
+		// Create new elements as needed.
+		text.enter().append("text")
+		    .attr("dy", ".35em")
+		    .attr("y", function(d,i){return i*20})
+		    .text(function(d) { 
+		    	console.log("data", d)
+		    	return d; })
+
+		// EXIT
+		// Remove old elements as needed.
+		// text.exit()
+
+	}
+
+	setInterval(function() {
+			var newPoem = shuffle(poem);
+		  	update(newPoem);
+		}, 4000);
+
+
+	// Shuffles the input array.
+	function shuffle(poem) {
+	  var m = poem.length, t, i;
+	  while (m) {
+	    i = Math.floor(Math.random() * m--);
+	    t = poem[m], poem[m] = poem[i], poem[i] = t;
+	  }
+	  return poem;
+	}
+	</script>
+	
+
+	</body>
+</html>
