@@ -54,8 +54,8 @@ var group = svg.selectAll('g')
     .attr('transform', 'translate(250,250)')
 
 var line = d3.svg.line()
-            .x(function(d){return d[0]*30})
-            .y(function(d){return -d[1]*30})
+            .x(function(d){return d[0]*20})
+            .y(function(d){return -d[1]*20})
 
 
 function getInterpolation() {
@@ -84,7 +84,7 @@ function getInterpolation() {
 var path = group.append('path')
     .transition()
     .ease('linear')
-    .duration(6000)
+    .duration(8000)
     .attrTween('d', getInterpolation)
 
 // var path = group.append('path')
