@@ -39,7 +39,7 @@ var spiral = function(n){
     return resultArray;
 }
 
-var spiralData = spiral(20)
+var spiralData = spiral(14)
 
 var width = 500;
 var height = 500;
@@ -84,7 +84,7 @@ function getInterpolation() {
 var path = group.append('path')
     .transition()
     .ease('linear')
-    .duration(8000)
+    .duration(4000)
     .attrTween('d', getInterpolation)
 
 // var path = group.append('path')

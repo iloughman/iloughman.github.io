@@ -12,6 +12,9 @@
 	</head>
 
 	<body>
+		<p style="padding-left: 32px"><i> The Snow Man </i> </p>
+		<p style="padding-left: 32px"> by Wallace Stevens </p>
+		<p class="poem"></p>
 	<script>
 
 	var poem = [
@@ -36,13 +39,19 @@
 		"Nothing that is not there and the nothing that is."
 				];
 
-	var svg = d3.select('body').append("svg")
+	var svg = d3.select('p.poem').append("svg")
 				.attr('height', 800)
 				.attr('width', 800)
 				.append("g")
-				  .attr("transform", "translate(32," + 32 + ")");
+				  .attr("transform", "translate(32," + 10 + ")");
 
-	console.log("svg", svg);
+	var text = svg.selectAll('text')
+		.data(poem, function(d,i){ return d})
+
+	text.enter().append("text")
+	    .attr("dy", ".35em")
+	    .attr("y", function(d,i){return i*20})
+	    .text(function(d) { return d; })
 
 	function update(data){
 
@@ -60,10 +69,6 @@
 		    .text(function(d) { 
 		    	console.log("data", d)
 		    	return d; })
-
-		// EXIT
-		// Remove old elements as needed.
-		// text.exit()
 
 	}
 
