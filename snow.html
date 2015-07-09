@@ -6,7 +6,6 @@
 			  font: 18px Garamond;
 			}
 	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 
 	</head>
@@ -60,15 +59,10 @@
 		var text = svg.selectAll('text')
 			.data(data, function(d,i){ return d})
 
-
-		// ENTER
-		// Create new elements as needed.
 		text.enter().append("text")
 		    .attr("dy", ".35em")
 		    .attr("y", function(d,i){return i*20})
-		    .text(function(d) { 
-		    	console.log("data", d)
-		    	return d; })
+		    .text(function(d) { return d; })
 
 	}
 
