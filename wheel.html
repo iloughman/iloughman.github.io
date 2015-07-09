@@ -46,82 +46,55 @@
 		<p class="poem"></p>
 	<script>
 
-	var poem = [
-		"The road to the gret canyon always feels", 
-		"like that road and no other",
-		"the highway to a fissure &nbsp;&nbsp; to the female core",
-		"of a continent",
-		"Below Flagstaff even  the rock erosions wear",
-		"a famous handwriting",
-		"the river's still prevailing signature",
-		"",
-		"Seeign those rocks  that road  in dreams  I know",
-		"it is happening again  as twice while waking",
-		"I am traveling to the edge to meet the face",
-		"of annihilating and impersonal time",
-		"stained in teh colors of a woman's genitals",
-		"outlasting every transient violation",
-		"a face that is strangely intimate to me",
-		"",
-		"Today I turned the wheel  refused that journey",
-		"I was feeling too alone on the open plateau",
-		"of pinon juniper  world beyond time",
-		"of rockflank spread around me  too alone",
-		"and too filled with you  with whom I talked for hours",
-		"driving up from the desert  though you were far away",
-		"as I talk to you all day  whatever day"
-				];
+		var poem = [
+			"The road to the great canyon always feels", 
+			"like that road and no other",
+			"the highway to a fissure &nbsp;&nbsp; to the female core",
+			"of a continent",
+			"Below Flagstaff even  the rock erosions wear",
+			"a famous handwriting",
+			"the river's still prevailing signature",
+			"",
+			"Seeign those rocks  that road  in dreams  I know",
+			"it is happening again  as twice while waking",
+			"I am traveling to the edge to meet the face",
+			"of annihilating and impersonal time",
+			"stained in teh colors of a woman's genitals",
+			"outlasting every transient violation",
+			"a face that is strangely intimate to me",
+			"",
+			"Today I turned the wheel  refused that journey",
+			"I was feeling too alone on the open plateau",
+			"of pinon juniper  world beyond time",
+			"of rockflank spread around me  too alone",
+			"and too filled with you  with whom I talked for hours",
+			"driving up from the desert  though you were far away",
+			"as I talk to you all day  whatever day"
+					];
 
-	// var svg = d3.select('p.poem').append("svg")
-	// 			.attr('height', 800)
-	// 			.attr('width', 800)
-	// 			.append("g")
-	// 			  .attr("transform", "translate(32," + 10 + ")");
+		var text = d3.selectAll('text')
+			.attr('x', 30)
+			.attr('y',function(d,i){return i*20 +30})
+			.attr('fill', 'rgba(0,0,0,1)')
 
-	// var text = svg.selectAll('text')
-	// 	.data(poem, function(d,i){ return d})
+		function update(){
 
-	// text.enter().append("text")
-	//     .attr("dy", ".35em")
-	//     .attr("y", function(d,i){return i*20})
-	//     .text(function(d) { return d; })
-	//     .attr('fill','rgba(0,0,0,1)')
+			text.transition()
+				.delay(function(d,i){
+					return i*2000
+				})
+				.duration(10000)
+				.attr('fill','rgba(0,0,0,0)')
+				.transition()
+				.attr('fill','rgba(0,0,0,1)')
 
-	var text = d3.selectAll('text')
-		.attr('x', 30)
-		.attr('y',function(d,i){return i*20 +30})
-		.attr('fill', 'rgba(0,0,0,1)')
+		}
 
-	function update(){
+		update()
+		setInterval(function() {
+			  	update();
+			}, 20000);
 
-		// ENTER
-		// Create new elements as needed.
-		text.transition()
-			.delay(function(d,i){
-				return i*2000
-			})
-			.duration(10000)
-			.attr('fill','rgba(0,0,0,0)')
-			.transition()
-			.attr('fill','rgba(0,0,0,1)')
-
-	}
-
-	update()
-	setInterval(function() {
-		  	update();
-		}, 20000);
-
-
-	// Shuffles the input array.
-	function shuffle(poem) {
-	  var m = poem.length, t, i;
-	  while (m) {
-	    i = Math.floor(Math.random() * m--);
-	    t = poem[m], poem[m] = poem[i], poem[i] = t;
-	  }
-	  return poem;
-	}
 	</script>
 	
 
