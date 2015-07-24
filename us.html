@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+
+
+<head>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
+</head>
+<style>
+path {
+	fill: white;
+	stroke: grey;
+}
+
+.a9 { fill:rgb(247,251,255); }
+.a8 { fill:rgb(222,235,247); }
+.a7 { fill:rgb(198,219,239); }
+.a6 { fill:rgb(158,202,225); }
+.a5 { fill:rgb(107,174,214); }
+.a4 { fill:rgb(66,146,198); }
+.a3 { fill:rgb(33,113,181); }
+.a2 { fill:rgb(8,81,156); }
+.a1 { fill:rgb(8,48,107); }
+.a0 { fill: rgb(8,24,80);}
+
+.residential {stroke: rgb(158,202,225);}
+.motorway {stroke:hotpink;}
+
+.toolTip {
+  color: #222; 
+  background: #fff; 
+  padding: .5em; 
+  text-shadow: #f5f5f5 0 1px 0;
+  border-radius: 2px; 
+  box-shadow: 0px 0px 2px 0px #a6a6a6; 
+  opacity: 0.9; 
+  position: absolute;
+}
+
+.hidden {
+	display: none;
+}
+
+#map {
+  width: 960px;
+  height: 500px;
+}
+
+</style>
+
+
+<body>
+	<script>
+
+		// Example 1
+
+		var width = 960;
+		var height = 500;
+
+		var svg = d3.select("body").append("svg")
+			.attr("width", width)
+			.attr("height", height)
+
+		var projectionType = d3.geo.albersUsa()
+
+		var path = d3.geo.path()
+					.projection(projectionType)
+
+
+		d3.json('states.json', function(err,states){
+			
+			var mapPath = svg.selectAll('path')
+				.data(states.features)
+				.enter().append('path')
+				.attr('d', function(d){
+					return path(d)
+				})
+
+			//stuff for animations
+
+		    mapPath.transition()
+		        .duration(10000)
+		        .attrTween("stroke-dasharray", tweenDash)
+
+			// Using the stroke-dasharry attribute
+			function tweenDash() {
+			    return function(t) {
+			        var l = mapPath.node().getTotalLength(); 
+			        interpolate = d3.interpolateString("0," + l, l + "," + l); 
+			        return interpolate(t);
+			    }
+			} 
+		})
+
+	</script>
+	<p align="right" class="text">Wouldn't it be nice if this worked?</p>
+</body>
+
