@@ -210,7 +210,6 @@
 		cover2.on("mousemove", function(){
 			var point = d3.mouse(this);
 			var otherPoint = [point[0], point[1]];
-			console.log("otherPoint", otherPoint);
 			lineData1.push(otherPoint);
 			path1.attr("d", function(d){return lineFunc(d)})
 			d3.select(rectCover2[Math.floor(point[1]/5)][Math.floor(point[0]/5)])
