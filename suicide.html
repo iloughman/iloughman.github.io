@@ -1,0 +1,224 @@
+<!doctype html>
+<html>
+	<head>
+	<style>
+		body {
+			  font: 18px Garamond;
+			}
+		/*Styles for first poem*/
+		.svg1 {
+			position: absolute;
+			left: 10px;
+			top: 100px;
+			width: 400px;
+			height:500px;
+		}
+		.cover1 {
+			z-index: 10;
+		}
+		.line1 {
+			stroke: white;
+			stroke-opacity: 1;
+			stroke-width: 5px;
+			fill: none;
+		}
+		/*Styles for second poem*/
+		svg {
+			position: absolute;
+			left: 450px;
+			top: 100px;
+			width: 400px;
+			height: 500px;
+		}
+		.cover {
+			z-index: 10;
+			/*background: color;*/
+		}
+		.poem, .poem1 {
+			z-index: 1;
+			fill: black;
+			fill-opacity: 1;
+			opacity: 1;
+			background-color: white;
+		}
+		.line {
+			stroke: black;
+			stroke-opacity: 1;
+			stroke-width: 3px;
+			fill: none;
+		}
+
+		.title1 {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			width: 400px;
+		}
+
+		.title2 {
+			position: absolute;
+			top: 10px;
+			left: 450px;
+			width: 400px;
+		}
+	</style>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+
+	</head>
+
+	<body>
+		<div class="title1">
+			<span style="padding-left: 32px"><i> Preface to a Twenty Volume Suicide Note </i> </span></br>
+			<span style="padding-left: 32px"> by Amiri Baraka </span></br>
+			</br>
+			<span style="padding-left: 45px"><i> for Kellie Jones, born 16 May 1959 </i> </span>
+		</div>
+		<div class="title2">
+			<span style="padding-left: 32px"><i> Preface to a Twenty Volume Suicide Note </i> </span></br>
+			<span style="padding-left: 32px"> by Amiri Baraka </span></br>
+			</br>
+			<span style="padding-left: 45px"><i> for Kellie Jones, born 16 May 1959 </i> </span>
+		</div>
+		<svg class="svg1 cover1"></svg>
+		<svg class="svg1 poem1"></svg>
+
+		<svg class="cover"></svg>
+		<svg class="poem"></svg>
+	<script>
+		var poem = [
+			"Lately, I've become accustomed to the way", 
+			"The ground opens up and envelopes me",
+			"Each time I go out to walk the dog.",
+			"Or the broad edged silly music the wind",
+			"Makes when I run for a bus...",
+			"",
+			"Things have come to that.",
+			"",
+			"And now, each night I count the stars,",
+			"And each night I get the same number.",
+			"And when they will not come to be counted,",
+			"I count the holes they leave.",
+			"",
+			"Nobody sings anymore.",
+			"",
+			"And then last night, I tiptoed up",
+			"To my daughter's room and heard her",
+			"Talking to someone, and when I opened",
+			"The door, there was no one there...",
+			"Only she on her knees, peeking into",
+			"",
+			"Her own clasped hands."
+					];
+
+		// First poem
+		var poemContainer1 = d3.select(".poem1");
+		var cover1 = d3.select(".cover1");
+
+		var line1 = poemContainer1.selectAll("g")
+			.data(poem)
+			.enter().append("g")
+			.attr("transform", function(d,i){
+				return "translate(20,"+(20+i*20)+")";
+			})
+
+		line1.append("text")
+			.text(function(d){
+				return d;
+			})
+
+		line1.on("mouseover", function(){
+			d3.select(this)
+				.attr("fill","rgb(255,255,255)")
+		});
+
+		var lineData1 = [];
+
+		var lineFunc = d3.svg.line()
+		    .interpolate("basis")
+		    .x(function(d, i) { return d[0]; })
+		    .y(function(d, i) { return d[1]; });
+
+		var path1 = cover1.append("path")
+		    .data([lineData1])
+		    .attr("class", "line1")
+		    .attr("d", function(d){return lineFunc(d)});
+
+		// Second poem
+		var poemContainer2 = d3.select(".poem");
+		var cover2 = d3.select(".cover");
+
+		var line2 = poemContainer2.selectAll("g")
+			.data(poem)
+			.enter().append("g")
+			.attr("transform", function(d,i){
+				return "translate(20,"+(20+i*20)+")";
+			})
+
+		line2.append("text")
+			.text(function(d){
+				return d;
+			})
+
+		var lineData2 = [];
+		var pixels = [];
+		for (var i = 0; i < 100; i++){
+			var row = [];
+			for (var j = 0; j < 100; j++){
+				row.push(i);
+			}
+			pixels.push(row);
+		}
+		var lineFunc2 = d3.svg.line()
+		    .interpolate("basis")
+		    .x(function(d, i) { return d[0]; })
+		    .y(function(d, i) { return d[1]; });
+
+		var rectGroup2 = cover2.selectAll("g")
+			.data(pixels)
+			.enter().append("g")
+
+		rectCover2 = rectGroup2.selectAll("rect")
+			.data(function(d){return d})
+			.enter().append("rect")
+			.attr("x", function(d,i){
+				return i*5;
+			})
+			.attr("y", function(d,i){
+				return d*5;
+			})
+			.attr("width", 6)
+			.attr("height", 6)
+			.style("opacity", 1)
+			.style("fill", "white");
+
+		var path2 = cover2.append("path")
+		    .data([lineData2])
+		    .attr("class", "line")
+		    .attr("d", function(d){return lineFunc2(d)});
+
+
+
+		cover1.on("mousemove", function(){
+			var point = d3.mouse(this);
+			var otherPoint = [point[0]+450,point[1]];
+			lineData1.push(point);
+			path1.attr("d", function(d){return lineFunc(d)})
+			d3.select(rectCover2[Math.floor(point[1]/5)][Math.floor(point[0]/5)])
+				.style("opacity", 0);
+		});
+
+		cover2.on("mousemove", function(){
+			var point = d3.mouse(this);
+			var otherPoint = [point[0], point[1]];
+			console.log("otherPoint", otherPoint);
+			lineData1.push(otherPoint);
+			path1.attr("d", function(d){return lineFunc(d)})
+			d3.select(rectCover2[Math.floor(point[1]/5)][Math.floor(point[0]/5)])
+				.style("opacity", 0)
+		});
+
+	</script>
+	
+
+	</body>
+</html>
