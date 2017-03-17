@@ -4,10 +4,15 @@
 	<style>
 		body {
 			  font: 18px Garamond;
+			  background: #fcd1f6;
 			}
 		span {
 			padding-left: 32px;
 			color: rgba(0,0,256,0.9);
+		}
+		text {
+			  font: 18px Garamond;
+			  text-shadow: 0 0 .1em magenta, 0 1em steelblue;
 		}
 	</style>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
@@ -15,8 +20,8 @@
 	</head>
 
 	<body>
-		<p style="padding-left: 32px"><i> Turning the Wheel </i> </p>
-		<p style="padding-left: 32px; color: rgba(0,0,0,1);"> by Adrienne Rich </p>
+		<p style="padding-left: 32px;color: steelblue;"><i> Turning the Wheel </i> </p>
+		<p style="padding-left: 32px; color: rgba(255,0,255,1);"> by Adrienne Rich </p>
 		<svg width='900' height='500'>
 			<text>The road to the great canyon always feels</text>
 			<text>like that road and no other</text>
@@ -74,7 +79,7 @@
 		var text = d3.selectAll('text')
 			.attr('x', 30)
 			.attr('y',function(d,i){return i*20 +30})
-			.attr('fill', 'rgba(0,0,0,1)')
+			.attr('fill', 'rgba(255,0,255,1)')
 
 		function update(){
 
@@ -83,9 +88,9 @@
 					return i*2000
 				})
 				.duration(10000)
-				.attr('fill','rgba(0,0,0,0)')
+				.attr('fill','rgba(255,0,255,0)')
 				.transition()
-				.attr('fill','rgba(0,0,0,1)')
+				.attr('fill','rgba(255,0,255,1)')
 
 		}
 

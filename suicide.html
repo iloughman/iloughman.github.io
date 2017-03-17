@@ -17,7 +17,7 @@
 			z-index: 10;
 		}
 		.line1 {
-			stroke: white;
+			stroke: deeppink;
 			stroke-opacity: 1;
 			stroke-width: 4px;
 			fill: none;
@@ -36,13 +36,13 @@
 		}
 		.poem, .poem1 {
 			z-index: 1;
-			fill: black;
+			fill: white;
 			fill-opacity: 1;
 			opacity: 1;
-			background-color: white;
+			/*background-color: white;*/
 		}
 		.line {
-			stroke: black;
+			stroke: deeppink;
 			stroke-opacity: 1;
 			stroke-width: 3px;
 			fill: none;
@@ -189,7 +189,7 @@
 			.attr("width", 6)
 			.attr("height", 6)
 			.style("opacity", 1)
-			.style("fill", "white");
+			.style("fill", "deeppink");
 
 		var path2 = cover2.append("path")
 		    .data([lineData2])
@@ -220,4 +220,5 @@
 	
 
 	</body>
+	<link rel="stylesheet" type="text/css" href="background.css">
 </html>
