@@ -17,7 +17,7 @@
 			z-index: 10;
 		}
 		.line1 {
-			stroke: deeppink;
+			stroke: #fcd1f6;
 			stroke-opacity: 1;
 			stroke-width: 4px;
 			fill: none;
@@ -36,13 +36,13 @@
 		}
 		.poem, .poem1 {
 			z-index: 1;
-			fill: white;
+			fill: steelblue;
 			fill-opacity: 1;
 			opacity: 1;
 			/*background-color: white;*/
 		}
 		.line {
-			stroke: deeppink;
+			stroke: #fcd1f6;
 			stroke-opacity: 1;
 			stroke-width: 3px;
 			fill: none;
@@ -62,6 +62,7 @@
 			width: 400px;
 		}
 	</style>
+	<link rel="stylesheet" type="text/css" href="background.css">
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 
 	</head>
@@ -189,7 +190,7 @@
 			.attr("width", 6)
 			.attr("height", 6)
 			.style("opacity", 1)
-			.style("fill", "deeppink");
+			.style("fill", "#fcd1f6");
 
 		var path2 = cover2.append("path")
 		    .data([lineData2])
@@ -220,5 +221,4 @@
 	
 
 	</body>
-	<link rel="stylesheet" type="text/css" href="background.css">
 </html>
